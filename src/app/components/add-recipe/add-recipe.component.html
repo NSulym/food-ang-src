@@ -1,0 +1,71 @@
+<app-menu></app-menu>
+<div class="wrap">
+  <form [formGroup]="appRecipeForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <p>name new recipe</p>
+      <label>
+        <input
+          type="text"
+          formControlName="nameRecipe"
+          placeholder="Recipe name"
+        >
+      </label>
+    </div>
+    <div class="form-group">
+      <label>
+        <input
+          type="text"
+          class="ing-inp"
+          formControlName="ingredient"
+          placeholder="Add ingredient"
+        >
+      </label>
+      <button type="button" (click)="addIng()">
+        add ingredients
+      </button>
+    </div>
+    <div class="form-group">
+      <label>
+        <textarea
+          formControlName="description"
+          [(ngModel)]="desc"
+          placeholder="Recipe description"
+        >
+        </textarea>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>
+        <input
+          #file
+          type="file"
+          class="upload"
+          formControlName="logo"
+          (change)="onFileChanged(file.files)"
+        >
+        <span>upload image</span>
+      </label>
+    </div>
+    <button type="submit" class="save-btn">
+      save
+    </button>
+    <button type="reset" class="reset-btn" (click)="clearForm()">
+      reset
+    </button>
+  </form>
+</div>
+
+
+<div class="wrap-recipe">
+  <div class="preparation">
+    <img src="{{previewRecipe.logo}}"/>
+    <h3>приготування</h3>
+    <p>{{desc}}</p>
+  </div>
+  <div class="ingredients">
+    <h3>інгредієнти</h3>
+    <ul>
+      <li *ngFor="let ing of previewRecipe.ingredients, let i = index">{{ing}}<span (click)="deleteIng(i)">x</span></li>
+    </ul>
+  </div>
+</div>

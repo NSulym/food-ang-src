@@ -1,0 +1,18 @@
+<header class="wrap-menu">
+  <div
+    routerLink="/"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact:true}"
+  >
+    <p>main</p>
+  </div>
+  <div
+    routerLink="/recipe/add"
+    routerLinkActive="active"
+  >
+    <p>add recipe</p>
+  </div>
+  <div routerLink="/login" (click)="logOut()">
+    <p>log out</p>
+  </div>
+</header>

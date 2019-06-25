@@ -1,0 +1,15 @@
+<app-menu></app-menu>
+<div class="wrap-recipe">
+  <div class="preparation">
+    <img src="{{oneRecipe.logo}}"/>
+    <p>{{oneRecipe.name}}</p>
+    <h3>приготування</h3>
+    <p>{{oneRecipe.description}}</p>
+  </div>
+  <div class="ingredients">
+    <h3>інгредієнти</h3>
+    <ul>
+       <li *ngFor="let ing of oneRecipe.ingredients">{{ing}}</li>
+     </ul>
+  </div>
+</div>

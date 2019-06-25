@@ -1,0 +1,17 @@
+.wrap-menu {
+  display: flex;
+  justify-content: space-around;
+  background: #0000FF;
+  div {
+    p {
+      color: #fff;
+      text-transform: capitalize;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+.active{
+  border-bottom: 2px solid #fff;
+}
