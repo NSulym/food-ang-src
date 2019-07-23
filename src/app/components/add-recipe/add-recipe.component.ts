@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {RecipeService} from '../../services/recipe.service';
 
 @Component({
@@ -15,8 +15,18 @@ export class AddRecipeComponent implements OnInit {
     name: '',
     logo: '',
     description: '',
-    ingredients: []
+    ingredients: [],
+    categories: []
   };
+  showPrev = false;
+  categories = [
+    'Перше',
+    'Страви із свинини',
+    'Страви з курки',
+    'Гарніри',
+    'Десерти',
+    'Напої'
+  ];
 
   constructor(private recipeSer: RecipeService) {
 
@@ -26,7 +36,9 @@ export class AddRecipeComponent implements OnInit {
     this.appRecipeForm = new FormGroup({
       nameRecipe: new FormControl(null),
       ingredient: new FormControl(null),
+      ingredientValue: new FormControl(null),
       description: new FormControl(null),
+      checkBox: new FormControl(null),
       logo: new FormControl(null)
     });
   }
@@ -40,10 +52,15 @@ export class AddRecipeComponent implements OnInit {
 
   addIng() {
     if (this.appRecipeForm.controls.ingredient.value !== '') {
-      this.previewRecipe.ingredients.push(this.appRecipeForm.controls.ingredient.value);
+      const ingObj = {
+        name: this.appRecipeForm.controls.ingredient.value,
+        value: this.appRecipeForm.controls.ingredientValue.value
+      };
+      this.previewRecipe.ingredients.push(ingObj);
       console.log(this.appRecipeForm);
     }
     this.appRecipeForm.controls.ingredient.setValue('');
+    this.appRecipeForm.controls.ingredientValue.setValue('');
   }
 
   onFileChanged(files) {
@@ -62,5 +79,18 @@ export class AddRecipeComponent implements OnInit {
 
   deleteIng(i) {
     this.previewRecipe.ingredients.splice(i, 1);
+  }
+
+  onShowPrev() {
+    this.showPrev = true;
+  }
+
+  onSelectCategory(categ) {
+    if (this.previewRecipe.categories.indexOf(categ) === -1) {
+      this.previewRecipe.categories.push(categ);
+    } else {
+      this.previewRecipe.categories.splice(this.previewRecipe.categories.indexOf(categ), 1);
+    }
+    console.log(this.previewRecipe.categories);
   }
 }

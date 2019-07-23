@@ -35,7 +35,12 @@
           outline: none;
         }
       }
+      .add_value-inp{
+        width: 50px;
+        margin-right: 10px;
+      }
       span{
+        margin-top: 5px;
         text-transform: capitalize;
       }
       textarea{
@@ -54,10 +59,23 @@
         display: none;
       }
     }
+    .form-checkbox{
+      width: 100%;
+      max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      input{
+        width: 50px;
+        height: 17px;
+        margin-top: 0;
+      }
+
+    }
     button{
       text-transform: capitalize;
     }
-    .save-btn, .reset-btn{
+    .save-btn, .reset-btn,
+    .show_prev-btn{
       width: 250px;
       height: 50px;
       border: none;
@@ -75,7 +93,6 @@
     }
   }
 }
-
 .wrap-recipe{
   display: flex;
   justify-content: center;

@@ -4,39 +4,27 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class RecipeService {
-  recipes = [
-    {
-      id: 123,
-      logo: 'assets/img/test-food.png',
-      name: 'test1',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, harum.',
-      ingredients: ['ing11', 'ing12', 'ing13']
-    },
-    {
-      id: 234,
-      logo: 'assets/img/test-food.png',
-      name: 'test2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, harum.',
-      ingredients: ['ing21', 'ing22', 'ing23']
-    },
-    {
-      id: 345,
-      logo: 'assets/img/test-food.png',
-      name: 'test3',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, harum.',
-      ingredients: ['ing31', 'ing32', 'ing33']
-    },
-  ];
+  recipes = [];
 
   constructor() {
+    if (localStorage.getItem('recipe')) {
+      this.recipes = JSON.parse(localStorage.getItem('recipe'));
+    }
   }
 
   addRecipe(e) {
-     const obj = {...e};
-     this.recipes.push(obj);
+    const obj = {...e};
+    this.recipes.push(obj);
+    this.updateLocalStorage(this.recipes);
   }
 
   getRecipeById(id) {
     return this.recipes.find(el => el.id === id);
+  }
+
+  updateLocalStorage(e) {
+    const arr = [...e];
+    localStorage.setItem('recipe', JSON.stringify(arr));
+    console.log(JSON.parse(localStorage.getItem('recipe')));
   }
 }

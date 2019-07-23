@@ -1,15 +1,24 @@
 <app-menu></app-menu>
+<p *ngFor="let categ of oneRecipe.categories">{{categ}}</p>
 <div class="wrap-recipe">
   <div class="preparation">
-    <img src="{{oneRecipe.logo}}"/>
+    <img src="{{oneRecipe.logo}}" *ngIf="oneRecipe.logo"/>
+    <img src="assets/img/test-food.png" *ngIf="!oneRecipe.logo"/>
     <p>{{oneRecipe.name}}</p>
-    <h3>приготування</h3>
+
+
+    <!--<p>{{oneRecipe.categories}}</p>-->
+
+
+    <h3 *ngIf="oneRecipe.description">приготування</h3>
+    <h3 *ngIf="!oneRecipe.description">без приготування</h3>
     <p>{{oneRecipe.description}}</p>
   </div>
   <div class="ingredients">
-    <h3>інгредієнти</h3>
+    <h3 *ngIf="oneRecipe.ingredients.length">інгредієнти</h3>
+    <h3 *ngIf="!oneRecipe.ingredients.length">немає інгредієнтів</h3>
     <ul>
-       <li *ngFor="let ing of oneRecipe.ingredients">{{ing}}</li>
+       <li *ngFor="let ing of oneRecipe.ingredients">{{ing.name}} {{ing.value}}г</li>
      </ul>
   </div>
 </div>

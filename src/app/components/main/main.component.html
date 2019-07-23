@@ -1,7 +1,14 @@
 <app-menu></app-menu>
-<div class="wrap" >
-  <div class="item" *ngFor="let recipe of allRecipe, let i = index" (click)="onRecipe(recipe.id)">
-    <img src="{{recipe.logo}}"/>
+<label *ngFor="let category of categories">
+  <input
+    type="checkbox"
+    (click)="chooseCategory(category)"
+  >{{category}}
+</label>
+<div class="wrap">
+  <div class="item" *ngFor="let recipe of allRecipeFilter, let i = index" (click)="onRecipe(recipe.id)">
+    <img src="{{recipe.logo}}" *ngIf="recipe.logo"/>
+    <img src="assets/img/test-food.png" *ngIf="!recipe.logo"/>
     <p>{{recipe.name}}</p>
     <span (click)="deleteRecipe(i)">x</span>
   </div>

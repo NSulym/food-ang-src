@@ -1,5 +1,11 @@
+label{
+  width: 100%;
+  max-width: 200px;
+  display: flex;
+  margin: 10px 50px;
+}
 .wrap{
-  padding: 50px;
+  padding: 20px 50px;
   .item{
     width: 300px;
     display: flex;
@@ -22,4 +28,7 @@
       right: 10px;
     }
   }
+}
+.hide{
+  display: none!important;
 }
